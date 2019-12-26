@@ -1,0 +1,119 @@
+:root {
+  --main-transition: all 2s linear;
+  --fast-transition: all 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Cabin", sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 15px;
+  background-color: #facc75;
+  color: white;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+header .title {
+  margin: auto;
+}
+
+header .nav-icon {
+  margin: auto 0;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+header .nav-icon:hover {
+  color: #faa96b;
+  transition: var(--fast-transition);
+}
+
+header .menu {
+  margin-left: 30px;
+}
+
+header .add {
+  margin-right: 30px;
+}
+
+header .input {
+  width: 50vw;
+  height: 40px;
+  padding: 5px;
+}
+
+.main-grid {
+  margin: 0 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-item {
+  height: 150px;
+  background-color: #f2f2f2;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+.grid-item .item-content {
+  width: 85%;
+  grid-column: 1/4;
+  grid-row: 1/2;
+  margin: auto;
+  padding: 1.5em;
+  overflow: hidden;
+}
+
+.grid-item .item-actions {
+  font-size: 1em;
+}
+
+.grid-item .item-actions:hover {
+  font-size: 1.5em;
+  transition: var(--fast-transition);
+}
+
+.grid-item .archive {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  margin: auto;
+}
+
+.grid-item .edit {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  margin: auto;
+}
+
+.grid-item .remove {
+  grid-column: 3/4;
+  grid-row: 2/3;
+  margin: auto;
+}
+
+@media screen and (max-width: 899px) {
+  .main-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .main-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
