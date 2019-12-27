@@ -1,5 +1,6 @@
 # Put-it
-A responsive to-do list app created using HTML, CSS, and JavaScript
+A responsive to-do list app created using HTML, CSS, and JavaScript.
+
 Check out the live site at: [Put-It](https://put-it.netlify.com/)
 
 ### To-Do
