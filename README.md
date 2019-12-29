@@ -10,4 +10,4 @@ Check out the live site at: [Put-It](https://put-it.netlify.com/)
 - [x] Remove an item by clicking the trash icon
 - [ ] Click side-menu to see additional features (?)
 - [ ] Archive items
-- [ ] Edit items
+- [x] Edit items
