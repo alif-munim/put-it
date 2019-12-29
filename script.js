@@ -1,13 +1,18 @@
+// Initialize variables
 const mainGrid = document.querySelector(".main-grid");
 const addBtn = document.querySelector(".add");
 const inputBox = document.querySelector(".input")
 let removeBtns;
 let editBtns;
-
-addBtn.addEventListener("click", addItem);
-let itemsAdded = false;
 let noteList = [];
 let i = 0;
+
+addBtn.addEventListener("click", addItem);
+
+/* Add an item
+ * Take the text value from the inputBox
+ * Insert a note on the grid which will by styled in CSS
+ */
 
 function addItem(e) {
 
@@ -45,6 +50,11 @@ function addItem(e) {
   i++;
 }
 
+/* Localstorage functions:
+ * List getter and setter
+ * Current index getter and setter
+ */
+
 class Storage {
   static setList() {
     localStorage.setItem("noteList", JSON.stringify(noteList));
@@ -60,6 +70,10 @@ class Storage {
   }
 }
 
+/* Remove an item
+ * Target parent element and remove child
+ * Remove note from noteList, saved in localstorage
+ */
 
 function removeItem(e) {
   console.log(`data-id: ${e.target.parentElement.parentElement.dataset.id}`);
@@ -69,6 +83,12 @@ function removeItem(e) {
 
   mainGrid.removeChild(e.target.parentElement.parentElement);
 }
+
+/* Edit an item
+ * Either show or hide the edit box through the "show" class in styles.css
+ * If a note has been edited, target innerText of current grid-item and change
+ * Also change the note value in the noteList saved in localstorage
+ */
 
 let showEdit = false;
 
@@ -96,6 +116,12 @@ function editItem(e) {
   }
 
 }
+
+/* On document load
+ * Display all previous notes saved in Localstorage
+ * Set current index to previously saved index + 1
+ * Add click listeners to all interactive buttons
+ */
 
 document.addEventListener("DOMContentLoaded", e => {
   showEdit = false;
