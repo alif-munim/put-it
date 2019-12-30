@@ -161,13 +161,13 @@ header .input {
 /* Responsive grid */
 
 @media screen and (max-width: 899px) {
-  .main-grid {
+  .main-grid, .archive-section {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 499px) {
-  .main-grid {
+  .main-grid, .archive-section {
     grid-template-columns: repeat(1, 1fr);
   }
 }
