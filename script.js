@@ -96,13 +96,24 @@ class Storage {
 
 function archiveItem(e) {
   let id = e.target.parentElement.parentElement.dataset.id;
-  let thisItem = noteList.find(item => item.id == id);
-  archiveList.push(thisItem);
-  archiveGrid.innerHTML += setNote(thisItem.id, thisItem.date, thisItem.note);
+  let thisItem = e.target.parentElement.parentElement;
+  if (noteList.some(item => item.id == id)) {
+    let itemObj = noteList.find(item => item.id == id);
+    archiveList.push(itemObj);
+    noteList = noteList.filter(item => item.id != id)
+    archiveGrid.innerHTML += setNote(itemObj.id, itemObj.date, itemObj.note);
+    mainGrid.removeChild(thisItem);
+  } else if (archiveList.some(item => item.id == id)) {
+    let itemObj = archiveList.find(item => item.id == id);
+    noteList.push(itemObj);
+    archiveList = archiveList.filter(item => item.id != id)
+    mainGrid.innerHTML += setNote(itemObj.id, itemObj.date, itemObj.note);
+    archiveGrid.removeChild(thisItem);
+  }
+
   setActionListeners();
 
   Storage.setArchive();
-  removeItem(e);
   Storage.setList();
 }
 
