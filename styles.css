@@ -1,7 +1,10 @@
+/* Root variables */
 :root {
   --main-transition: all 2s linear;
   --fast-transition: all 0.25s ease;
 }
+
+/* Global styles */
 
 * {
   margin: 0;
@@ -11,6 +14,8 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+/* Header styles */
 
 header {
   width: 100%;
@@ -31,6 +36,7 @@ header .title {
 header .nav-icon {
   margin: auto 0;
   font-size: 1.5em;
+  transition: var(--fast-transition);
   cursor: pointer;
 }
 
@@ -53,11 +59,15 @@ header .input {
   padding: 5px;
 }
 
+/* Grid layout */
+
 .main-grid {
   margin: 0 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+/* Grid item styles */
 
 .grid-item {
   height: 200px;
@@ -119,6 +129,8 @@ header .input {
   margin-right: auto;
 }
 
+/* Interactive classes */
+
 .hide {
   visibility: hidden;
 }
@@ -126,6 +138,8 @@ header .input {
 .show {
   visibility: visible;
 }
+
+/* Responsive grid */
 
 @media screen and (max-width: 899px) {
   .main-grid {
