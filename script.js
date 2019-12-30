@@ -1,10 +1,13 @@
 // Initialize variables
 const mainGrid = document.querySelector(".main-grid");
+const archiveGrid = document.querySelector(".archive-section");
 const addBtn = document.querySelector(".add");
 const inputBox = document.querySelector(".input")
 let removeBtns;
 let editBtns;
+let archiveBtns;
 let noteList = [];
+let archiveList = [];
 let i = 0;
 let date;
 
@@ -16,6 +19,8 @@ addBtn.addEventListener("click", addItem);
    removeBtns.forEach(button => button.addEventListener("click", removeItem));
    editBtns = document.querySelectorAll(".edit");
    editBtns.forEach(button => button.addEventListener("click", editItem));
+   archiveBtns = document.querySelectorAll(".archive");
+   archiveBtns.forEach(button => button.addEventListener("click", archiveItem));
  }
 
 // Grid item HTML template
@@ -81,6 +86,24 @@ class Storage {
   static getIndex() {
     return localStorage.getItem("index");
   }
+  static setArchive() {
+    localStorage.setItem("archiveList", JSON.stringify(archiveList));
+  }
+  static getArchive() {
+    return JSON.parse(localStorage.getItem("archiveList"));
+  }
+}
+
+function archiveItem(e) {
+  let id = e.target.parentElement.parentElement.dataset.id;
+  let thisItem = noteList.find(item => item.id == id);
+  archiveList.push(thisItem);
+  archiveGrid.innerHTML += setNote(thisItem.id, thisItem.date, thisItem.note);
+  setActionListeners();
+
+  Storage.setArchive();
+  removeItem(e);
+  Storage.setList();
 }
 
 /* Remove an item
@@ -91,10 +114,15 @@ class Storage {
 function removeItem(e) {
   let thisItem = e.target.parentElement.parentElement;
   let id = thisItem.dataset.id;
-  noteList = noteList.filter(item => item.id != id);
-  Storage.setList();
-
-  mainGrid.removeChild(thisItem);
+  if (noteList.some(item => item.id == id)) {
+    noteList = noteList.filter(item => item.id != id);
+    Storage.setList();
+    mainGrid.removeChild(thisItem);
+  } else if (archiveList.some(item => item.id == id)) {
+    archiveList = archiveList.filter(item => item.id != id);
+    Storage.setArchive();
+    archiveGrid.removeChild(thisItem);
+  }
 }
 
 /* Edit an item
@@ -124,12 +152,21 @@ function editItem(e) {
     itemContent.classList.remove("hide");
     itemEdit.classList.remove("show");
 
-    noteList.forEach(item => {
-      if (item.id == id) {
-        item.note = editMsg;
-        item.date = editDate;
-      }
-    });
+    if (noteList.some(item => item.id == id)) {
+      noteList.forEach(item => {
+        if (item.id == id) {
+          item.note = editMsg;
+          item.date = editDate;
+        }
+      });
+    } else if (archiveList.some(item => item.id == id)) {
+      archiveList.forEach(item => {
+        if (item.id == id) {
+          item.note = editMsg;
+          item.date = editDate;
+        }
+      });
+    }
 
     Storage.setList();
     showEdit = false;
@@ -149,11 +186,20 @@ document.addEventListener("DOMContentLoaded", e => {
     i = parseInt(Storage.getIndex()) + 1;
   }
   if (Storage.getList()) {
-    let load = Storage.getList();
-    load.forEach(item => {
+    let noteLoad = Storage.getList();
+    noteLoad.forEach(item => {
       mainGrid.innerHTML += setNote(item.id, item.date, item.note)
       setActionListeners();
       noteList.push(item);
+      Storage.setList();
+    });
+  }
+  if (Storage.getArchive()) {
+    let archiveLoad = Storage.getArchive();
+    archiveLoad.forEach(item => {
+      archiveGrid.innerHTML += setNote(item.id, item.date, item.note)
+      setActionListeners();
+      archiveList.push(item);
       Storage.setList();
     });
   }

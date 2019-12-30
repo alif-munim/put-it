@@ -9,5 +9,5 @@ Check out the live site here: [Put-It](https://put-it.netlify.com/)
 - [x] Each item time stamped
 - [x] Remove an item by clicking the trash icon
 - [ ] Click side-menu to see additional features (?)
-- [ ] Archive items
+- [x] Archive items
 - [x] Edit items
