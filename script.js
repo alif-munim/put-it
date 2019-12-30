@@ -6,6 +6,7 @@ let removeBtns;
 let editBtns;
 let noteList = [];
 let i = 0;
+let date;
 
 addBtn.addEventListener("click", addItem);
 
@@ -16,15 +17,18 @@ addBtn.addEventListener("click", addItem);
 
 function addItem(e) {
 
+  date = new Date();
+
   let noteObj = {
     note: inputBox.value,
+    date: date.toLocaleString(),
     id: i
   }
 
   mainGrid.innerHTML += `
     <div class="grid-item" data-id="${noteObj.id}">
       <!-- content -->
-      <div class="item-content"><p>${noteObj.note}</p><textarea class="editInput hide" rows="3" maxlength="64"></textarea></div>
+      <div class="item-content"><p>${noteObj.date}</p><p>${noteObj.note}</p><textarea class="editInput hide" rows="3" maxlength="64">${noteObj.note}</textarea></div>
       <!-- buttons -->
       <div class="item-actions archive">
         <i class="fas fa-history"></i>
@@ -95,22 +99,26 @@ let showEdit = false;
 function editItem(e) {
   if (!showEdit) {
     console.log(e.target.parentElement.previousElementSibling.previousElementSibling);
-
+    e.target.parentElement.previousElementSibling.previousElementSibling.childNodes[1].classList.add("hide");
     e.target.parentElement.previousElementSibling.previousElementSibling.lastChild.classList.add("show");
     showEdit = true;
   } else {
-    console.log(e.target);
-
     let id = e.target.parentElement.parentElement.dataset.id;
-    console.log(id);
     let editMsg = e.target.parentElement.previousElementSibling.previousElementSibling.lastChild.value;
-    e.target.parentElement.previousElementSibling.previousElementSibling.firstChild.innerText = editMsg;
+    let editDate = (new Date()).toLocaleString();
+
+    e.target.parentElement.previousElementSibling.previousElementSibling.childNodes[0].innerText = editDate;
+    e.target.parentElement.previousElementSibling.previousElementSibling.childNodes[1].innerText = editMsg;
+    e.target.parentElement.previousElementSibling.previousElementSibling.childNodes[1].classList.remove("hide");
     e.target.parentElement.previousElementSibling.previousElementSibling.lastChild.classList.remove("show");
+
     noteList.forEach(item => {
       if (item.id == id) {
         item.note = editMsg;
+        item.date = editDate;
       }
     });
+
     Storage.setList();
     showEdit = false;
   }
@@ -134,7 +142,7 @@ document.addEventListener("DOMContentLoaded", e => {
       mainGrid.innerHTML += `
         <div class="grid-item" data-id="${item.id}">
           <!-- content -->
-          <div class="item-content"><p>${item.note}</p><textarea class="editInput hide" rows="3" maxlength="64"></textarea></div>
+          <div class="item-content"><p>${item.date}</p><p>${item.note}</p><textarea class="editInput hide" rows="3" maxlength="64">${item.note}</textarea></div>
           <!-- buttons -->
           <div class="item-actions archive">
             <i class="fas fa-history"></i>
