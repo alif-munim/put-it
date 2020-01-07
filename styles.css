@@ -161,6 +161,11 @@ header .input {
   transform: translateX(-100%);
   transition: var(--fast-transition);
   color: white;
+  text-align: center;
+}
+
+.side-menu h1 {
+  margin-top: 2em;
 }
 
 .close-menu {
@@ -168,6 +173,27 @@ header .input {
   top: 1em;
   right: 1em;
 }
+
+.menu-content {
+  text-align: center;
+  margin-top: 1em;
+  font-size: 1.2em;
+}
+
+.menu-content a {
+  text-decoration: none;
+  color: white;
+}
+
+.menu-link {
+  padding: 10px;
+}
+
+.menu-link:hover {
+  background-color: #faa96b;
+}
+
+
 
 .show-menu {
   transform: translateX(0);
