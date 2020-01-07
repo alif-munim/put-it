@@ -170,6 +170,7 @@ function editItem(e) {
           item.date = editDate;
         }
       });
+      Storage.setList();
     } else if (archiveList.some(item => item.id == id)) {
       archiveList.forEach(item => {
         if (item.id == id) {
@@ -177,9 +178,9 @@ function editItem(e) {
           item.date = editDate;
         }
       });
+      Storage.setArchive();
     }
 
-    Storage.setList();
     showEdit = false;
   }
 
