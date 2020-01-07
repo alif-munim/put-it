@@ -2,7 +2,10 @@
 const mainGrid = document.querySelector(".main-grid");
 const archiveGrid = document.querySelector(".archive-section");
 const addBtn = document.querySelector(".add");
-const inputBox = document.querySelector(".input")
+const inputBox = document.querySelector(".input");
+const menuBtn = document.querySelector(".menu");
+const closeMenuBtn = document.querySelector(".close-menu");
+const sideMenu = document.querySelector(".side-menu");
 let removeBtns;
 let editBtns;
 let archiveBtns;
@@ -11,7 +14,10 @@ let archiveList = [];
 let i = 0;
 let date;
 
+menuBtn.addEventListener("click", () => sideMenu.classList.add("show-menu"));
+closeMenuBtn.addEventListener("click", () => sideMenu.classList.remove("show-menu"));
 addBtn.addEventListener("click", addItem);
+
 
 // Initialize item action listeners
  function setActionListeners() {

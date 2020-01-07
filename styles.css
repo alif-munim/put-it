@@ -15,6 +15,18 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.nav-icon {
+  margin: auto 0;
+  font-size: 1.5em;
+  transition: var(--fast-transition);
+  cursor: pointer;
+}
+
+.nav-icon:hover {
+  color: #faa96b;
+  transition: var(--fast-transition);
+}
+
 /* Header styles */
 
 header {
@@ -31,18 +43,6 @@ header {
 
 header .title {
   margin: auto;
-}
-
-header .nav-icon {
-  margin: auto 0;
-  font-size: 1.5em;
-  transition: var(--fast-transition);
-  cursor: pointer;
-}
-
-header .nav-icon:hover {
-  color: #faa96b;
-  transition: var(--fast-transition);
 }
 
 header .menu {
@@ -148,8 +148,37 @@ header .input {
   margin: 25px;
 }
 
-/* Interactive classes */
+/* Menu */
 
+.side-menu {
+  height: 100vh;
+  width: 30vw;
+  background-color:#ffca63;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  transition: var(--fast-transition);
+  color: white;
+}
+
+.close-menu {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+.show-menu {
+  transform: translateX(0);
+  transition: var(--fast-transition);
+}
+
+.not-menu {
+  position: relative;
+}
+
+/* Interactive classes */
 .hide {
   visibility: hidden;
 }
