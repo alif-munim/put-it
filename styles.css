@@ -203,8 +203,6 @@ header .input {
   color: white;
 }
 
-
-
 .show-menu {
   transform: translateX(0);
   transition: var(--fast-transition);
@@ -229,10 +227,18 @@ header .input {
   .main-grid, .archive-section {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .side-menu {
+    width: 50vw;
+  }
 }
 
 @media screen and (max-width: 499px) {
   .main-grid, .archive-section {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .side-menu {
+    width: 100vw;
   }
 }
