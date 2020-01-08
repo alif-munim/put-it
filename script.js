@@ -6,6 +6,7 @@ const inputBox = document.querySelector(".input");
 const menuBtn = document.querySelector(".menu");
 const closeMenuBtn = document.querySelector(".close-menu");
 const sideMenu = document.querySelector(".side-menu");
+const overlay = document.querySelector(".overlay");
 let removeBtns;
 let editBtns;
 let archiveBtns;
@@ -14,8 +15,16 @@ let archiveList = [];
 let i = 0;
 let date;
 
-menuBtn.addEventListener("click", () => sideMenu.classList.add("show-menu"));
-closeMenuBtn.addEventListener("click", () => sideMenu.classList.remove("show-menu"));
+overlay.classList.add("hide");
+
+menuBtn.addEventListener("click", () => {
+  sideMenu.classList.add("show-menu");
+  overlay.classList.remove("hide");
+});
+closeMenuBtn.addEventListener("click", () => {
+  sideMenu.classList.remove("show-menu");
+  overlay.classList.add("hide");
+});
 addBtn.addEventListener("click", addItem);
 
 
