@@ -73,12 +73,18 @@ function addItem(e) {
     date: date.toLocaleString()
   }
 
-  mainGrid.innerHTML += setNote(noteObj.id, noteObj.date, noteObj.note);
+  if (mainGrid) {
+    mainGrid.innerHTML += setNote(noteObj.id, noteObj.date, noteObj.note);
+    noteList.push(noteObj);
+    Storage.setList();
+  } else {
+    archiveGrid.innerHTML += setNote(noteObj.id, noteObj.date, noteObj.note);
+    archiveList.push(noteObj);
+    Storage.setArchive();
+  }
 
   setActionListeners();
 
-  noteList.push(noteObj);
-  Storage.setList();
   Storage.setIndex();
   i++;
 }
@@ -116,13 +122,13 @@ function archiveItem(e) {
     let itemObj = noteList.find(item => item.id == id);
     archiveList.push(itemObj);
     noteList = noteList.filter(item => item.id != id)
-    archiveGrid.innerHTML += setNote(itemObj.id, itemObj.date, itemObj.note);
+    // archiveGrid.innerHTML += setNote(itemObj.id, itemObj.date, itemObj.note);
     mainGrid.removeChild(thisItem);
   } else if (archiveList.some(item => item.id == id)) {
     let itemObj = archiveList.find(item => item.id == id);
     noteList.push(itemObj);
     archiveList = archiveList.filter(item => item.id != id)
-    mainGrid.innerHTML += setNote(itemObj.id, itemObj.date, itemObj.note);
+    // mainGrid.innerHTML += setNote(itemObj.id, itemObj.date, itemObj.note);
     archiveGrid.removeChild(thisItem);
   }
 
@@ -215,8 +221,10 @@ document.addEventListener("DOMContentLoaded", e => {
   if (Storage.getList()) {
     let noteLoad = Storage.getList();
     noteLoad.forEach(item => {
-      mainGrid.innerHTML += setNote(item.id, item.date, item.note)
-      setActionListeners();
+      if (mainGrid) {
+        mainGrid.innerHTML += setNote(item.id, item.date, item.note)
+        setActionListeners();
+      }
       noteList.push(item);
       Storage.setList();
     });
@@ -224,8 +232,10 @@ document.addEventListener("DOMContentLoaded", e => {
   if (Storage.getArchive()) {
     let archiveLoad = Storage.getArchive();
     archiveLoad.forEach(item => {
-      archiveGrid.innerHTML += setNote(item.id, item.date, item.note)
-      setActionListeners();
+      if (archiveGrid) {
+        archiveGrid.innerHTML += setNote(item.id, item.date, item.note)
+        setActionListeners();
+      }
       archiveList.push(item);
       Storage.setList();
     });
