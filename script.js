@@ -7,6 +7,7 @@ const menuBtn = document.querySelector(".menu");
 const closeMenuBtn = document.querySelector(".close-menu");
 const sideMenu = document.querySelector(".side-menu");
 const overlay = document.querySelector(".overlay");
+const menuLinks = document.querySelectorAll(".menu-link");
 let removeBtns;
 let editBtns;
 let archiveBtns;
@@ -224,6 +225,8 @@ document.addEventListener("DOMContentLoaded", e => {
       if (mainGrid) {
         mainGrid.innerHTML += setNote(item.id, item.date, item.note)
         setActionListeners();
+        menuLinks[0].style.backgroundColor = "#facc75";
+        menuLinks[0].style.color = "white";
       }
       noteList.push(item);
       Storage.setList();
@@ -235,6 +238,8 @@ document.addEventListener("DOMContentLoaded", e => {
       if (archiveGrid) {
         archiveGrid.innerHTML += setNote(item.id, item.date, item.note)
         setActionListeners();
+        menuLinks[1].style.backgroundColor = "#facc75";
+        menuLinks[1].style.color = "white";
       }
       archiveList.push(item);
       Storage.setList();

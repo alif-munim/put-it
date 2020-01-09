@@ -3,7 +3,7 @@
   --main-transition: all 2s linear;
   --fast-transition: all 0.25s ease;
   --main-color: #facc75;
-  --darker-color: #faa96b
+  --darker-color: #faa96b;
 }
 
 /* Global styles */
@@ -218,7 +218,7 @@ header .input {
 }
 
 .menu-link:hover {
-  background-color: #ffc963;
+  background-color: rgba(250, 204, 117, 0.6);
   color: white;
 }
 
