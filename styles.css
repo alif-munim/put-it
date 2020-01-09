@@ -3,6 +3,7 @@
   --main-transition: all 2s linear;
   --fast-transition: all 0.25s ease;
   --main-color: #facc75;
+  --darker-color: #faa96b
 }
 
 /* Global styles */
@@ -24,7 +25,7 @@ body {
 }
 
 .nav-icon:hover {
-  color: #faa96b;
+  color: var(--darker-color);
   transition: var(--fast-transition);
 }
 
@@ -58,6 +59,24 @@ header .input {
   width: 50vw;
   height: 40px;
   padding: 5px;
+}
+
+/* Section Title */
+.section-title {
+  width: 100%;
+  padding: 2em;
+  text-align: center;
+  margin-left: -2em;
+}
+
+.section-title .content h1 {
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+.section-title .content p {
+  font-size: 1em;
+  font-weight: lighter;
 }
 
 /* Grid layout */
@@ -143,11 +162,11 @@ header .input {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.section-title {
+/* .section-title {
   font-weight: bold;
   margin-top: 1em;
   margin: 25px;
-}
+} */
 
 /* Menu */
 
